@@ -35,7 +35,7 @@ Learn and demonstrate professional skills in:
 - Infrastructure as code
 
 ## ✅ Roadmap by stages
-- ### Stage 1 - Apps
+- ### 🟩 Stage 1 - Apps
     - ✅ PendingTask and Portfolio with Docker.
     - ✅ Try in Minikube.
     - ✅ Create all necessary YAML manifests.

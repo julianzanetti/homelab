@@ -46,7 +46,7 @@ Learn and demonstrate professional skills in:
         - EBS Volumes
         - Elastic IP
         - Security Groups
-        - ☐ Test provisioning and connectivity
+    - ☐ Test provisioning and connectivity
 
 - ### 🟨 Stage 3 — K3s & Core Services
     - ☐ Install K3s and connect nodes

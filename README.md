@@ -39,3 +39,30 @@ Learn and demonstrate professional skills in:
     - ✅ PendingTask and Portfolio with Docker.
     - ✅ Try in Minikube.
     - ✅ Create all necessary YAML manifests.
+
+- ### 🟨 Stage 2 — AWS Infrastructure
+    - ☐ Configure Terraform to deploy:
+        - 3 EC2 Spot Instances (1 master, 2 workers)
+        - EBS Volumes
+        - Elastic IP
+        - Security Groups
+        - ☐ Test provisioning and connectivity
+
+- ### 🟨 Stage 3 — K3s & Core Services
+    - ☐ Install K3s and connect nodes
+    - ☐ Deploy NGINX Ingress Controller
+    - ☐ Set up cert-manager and Let's Encrypt
+    - ☐ Route DNS to Elastic IP with Route 53
+
+- ### 🟦 Stage 4 — Deploy & GitOps
+    - ☐ Deploy all applications to cluster
+    - ☐ Deploy PostgreSQL Exporter
+    - ☐ Install Prometheus, Grafana and Loki
+    - ☐ Install ArgoCD and link Git repo
+    - ☐ Secure apps with HTTPS
+
+- ### 🟪 Stage 5 — Final touches
+    - ☐ Create Grafana dashboards
+    - ☐ Automate deployments with GitHub Actions
+    - ☐ Add screenshots to README
+    - ☐ Backup and snapshot strategy (optional)

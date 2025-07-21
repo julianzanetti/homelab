@@ -18,8 +18,7 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 |-------------------|--------------------------|
 | Homepage          | home.julian-lab.com      |
 | Portfolio Web     | julian-lab.com           |
-| PendingTask       | pending.julian-lab.com   |
-| TP6-DevOps        | tasks.julian-lab.com     |
+| PendingTask       | pendingtask.julian-lab.com   |
 | Grafana           | grafana.julian-lab.com   |
 | ArgoCD            | argocd.julian-lab.com    |
 

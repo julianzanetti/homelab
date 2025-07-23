@@ -12,10 +12,6 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true 
 
-  # Enable NAT gateways for private subnets
-  enable_nat_gateway = true
-  single_nat_gateway = true
-
   # Tags
   ## Tags for Public Subnets
   public_subnet_tags = {

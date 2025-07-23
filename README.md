@@ -23,7 +23,7 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 | ArgoCD            | argocd.julian-lab.com    |
 
 ## 🧩 Infrastructure
-3 EC2 Spot instances (`t4g.small` x2 + `t4g.micro`) with EBS volumes (10GB each one) and custom domain. K3s is installed on them and orchestrates all services, exposed with HTTPS thanks to NGINX Ingress + cert-manager.
+3 EC2 Spot instances (`t4g.small` x2 + `t4g.micro`) with EBS volumes (`10GB each one`) and custom domain. K3s is installed on them and orchestrates all services, exposed with HTTPS thanks to NGINX Ingress + cert-manager.
 
 ## 🧠 Objective
 Learn and demonstrate professional skills in:

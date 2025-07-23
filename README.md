@@ -6,14 +6,14 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 - Docker
 - Terraform + Ansible
 - AWS EC2 Spot + EBS + Route 53
-- PostgreSQL (con monitoreo)
+- PostgreSQL (with monitoring)
 - ArgoCD
 - Prometheus + Grafana + Loki
 - Let's Encrypt (cert-manager)
 - GitHub Actions (CI/CD)
-- Homepage (dashboard central)
+- Homepage (central dashboard)
 
-## 🌍 Apps deployed
+## 🌍 Apps deployed (In progress...)
 | App               | Subdomain              |
 |-------------------|--------------------------|
 | Homepage          | home.julian-lab.com      |
@@ -42,6 +42,7 @@ Learn and demonstrate professional skills in:
 
 - ### 🟨 Stage 2 — AWS Infrastructure
     - ☐ Configure Terraform to deploy:
+        - VPC infra ✅
         - 3 EC2 Spot Instances (1 master, 2 workers)
         - EBS Volumes
         - Elastic IP

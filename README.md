@@ -21,6 +21,8 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 | PendingTask       | pendingtask.julian-lab.com   |
 | Grafana           | grafana.julian-lab.com   |
 | ArgoCD            | argocd.julian-lab.com    |
+| Prometheus        |           -              |
+| Loki              |           -              |
 
 ## 🧩 Infrastructure
 3 EC2 Spot instances (`t4g.small` x2 + `t4g.micro`) with EBS volumes (`10GB each one`) and custom domain. K3s is installed on them and orchestrates all services, exposed with HTTPS thanks to NGINX Ingress + cert-manager.
@@ -44,9 +46,8 @@ Learn and demonstrate professional skills in:
     - ☐ Configure Terraform to deploy:
         - VPC infra ✅
         - Security Groups ✅
-        - 3 EC2 Spot Instances (1 master, 2 workers)
-        - EBS Volumes
-        - Elastic IP
+        - 3 EC2 Spot Instances (1 master, 2 workers) + EBS
+        - Elastic IP + Route53
     - ☐ Test provisioning and connectivity
 
 - ### 🟨 Stage 3 — K3s & Core Services

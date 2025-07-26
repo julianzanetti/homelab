@@ -43,10 +43,10 @@ Learn and demonstrate professional skills in:
 - ### 🟨 Stage 2 — AWS Infrastructure
     - ☐ Configure Terraform to deploy:
         - VPC infra ✅
+        - Security Groups ✅
         - 3 EC2 Spot Instances (1 master, 2 workers)
         - EBS Volumes
         - Elastic IP
-        - Security Groups
     - ☐ Test provisioning and connectivity
 
 - ### 🟨 Stage 3 — K3s & Core Services

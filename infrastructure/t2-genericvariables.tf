@@ -3,3 +3,11 @@ variable "aws_region" {
     type = string
     default = "sa-east-1"
 }
+
+locals {
+    common_tags = {
+        Environment = "Homelab"
+        Owner       = "Julian Zanetti"
+        ManagedBy   = "Terraform"
+    }
+}

@@ -28,9 +28,5 @@ module "vpc" {
   }
 
   ## Tags for the VPC
-  tags = {
-    Name        = var.vpc_name
-    Environment = "Homelab"
-    Owner      = "Julian Zanetti"
-  }
+  tags = local.common_tags
 }

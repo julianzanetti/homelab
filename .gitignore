@@ -21,3 +21,6 @@ Thumbs.db
 # Archivos de configuración de usuario
 .terraformrc
 terraform.rc
+
+# Claves privadas
+private-key/

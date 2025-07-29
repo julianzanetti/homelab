@@ -9,9 +9,9 @@ module "homelab_sg_public" {
   # Ingress rules
   ingress_rules = [
     "http-80-tcp",                              # HTTP traffic
-    "http-8080-tcp",                           # Alternative HTTP traffic (for ArgoCD)
+    "http-8080-tcp",                            # Alternative HTTP traffic (for ArgoCD)
     "https-443-tcp",                            # HTTPS traffic
-    "ssh-tcp",                               # SSH access
+    "ssh-tcp",                                  # SSH access
     "kubernetes-api-tcp",                       # Kubernetes API access (6443)
     "grafana-tcp",                              # Grafana access (3000)
     "prometheus-http-tcp",                      # Prometheus access (9090)

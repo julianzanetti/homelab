@@ -9,10 +9,11 @@ module "public_ec2_instance" {
 
   instance_type = var.instance_type
   ami = data.aws_ami.amzlinux2.id
-  availability_zone = element(module.vpc.public_subnets_availability_zones, 0)
+  availability_zone = element(module.vpc.azs, 0)
   key_name = var.instance_key
   vpc_security_group_ids = [module.homelab_sg_public.security_group_id]
   subnet_id = element(module.vpc.public_subnets, 0)
+  associate_public_ip_address = true
 
   tags = local.common_tags
 }

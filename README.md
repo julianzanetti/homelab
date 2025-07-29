@@ -43,12 +43,12 @@ Learn and demonstrate professional skills in:
     - ✅ Create all necessary YAML manifests.
 
 - ### 🟨 Stage 2 — AWS Infrastructure
-    - ☐ Configure Terraform to deploy:
+    - ✅ Configure Terraform to deploy:
         - VPC infra ✅
         - Security Groups ✅
         - 3 EC2 Spot Instances (1 master, 2 workers) + EBS ✅
         - Elastic IP + Route53 ✅
-    - ☐ Test provisioning and connectivity
+    - ✅ Test provisioning and connectivity
 
 - ### 🟨 Stage 3 — K3s & Core Services
     - ☐ Install K3s and connect nodes

@@ -42,7 +42,7 @@ Learn and demonstrate professional skills in:
     - ✅ Try in Minikube.
     - ✅ Create all necessary YAML manifests.
 
-- ### 🟨 Stage 2 — AWS Infrastructure
+- ### 🟩 Stage 2 — AWS Infrastructure
     - ✅ Configure Terraform to deploy:
         - VPC infra ✅
         - Security Groups ✅

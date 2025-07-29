@@ -1,7 +1,9 @@
-variable "instance_type" {
-  description = "Type EC2 Instance"
-  type = string
-  default = "t4g.small"
+locals {
+  instances = {
+    "1" = { instance_type = "t4g.small" }
+    "2" = { instance_type = "t4g.small" }
+    "3" = { instance_type = "t4g.micro" }
+  }
 }
 
 variable "instance_key" {

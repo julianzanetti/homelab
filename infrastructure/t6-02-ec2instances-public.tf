@@ -2,14 +2,14 @@ module "public_ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "6.0.2"
 
-  for_each = toset(["1", "2", "3"])
+  for_each = local.instances
 
   name = "homelab-public-${each.key}"
   create_spot_instance = true
   spot_type = "persistent"
   spot_wait_for_fulfillment = true
 
-  instance_type = var.instance_type
+  instance_type = each.value.instance_type
   ami = data.aws_ami.amzlinux2.id
   availability_zone = element(module.vpc.azs, tonumber(each.key) % length(module.vpc.azs))
   key_name = var.instance_key

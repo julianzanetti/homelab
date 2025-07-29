@@ -46,7 +46,7 @@ Learn and demonstrate professional skills in:
     - ☐ Configure Terraform to deploy:
         - VPC infra ✅
         - Security Groups ✅
-        - 3 EC2 Spot Instances (1 master, 2 workers) + EBS
+        - 3 EC2 Spot Instances (1 master, 2 workers) + EBS ✅
         - Elastic IP + Route53
     - ☐ Test provisioning and connectivity
 

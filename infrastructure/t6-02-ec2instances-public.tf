@@ -14,6 +14,10 @@ module "public_ec2_instance" {
   vpc_security_group_ids = [module.homelab_sg_public.security_group_id]
   subnet_id = element(module.vpc.public_subnets, 0)
   associate_public_ip_address = true
+  root_block_device = {
+    type = "gp3"
+    size = 10
+  }
 
   tags = local.common_tags
 }

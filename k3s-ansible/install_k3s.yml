@@ -40,13 +40,11 @@
   hosts: k3s_master
   become: true
   vars:
-    k3s_version: v1.28.5+k3s1
+    k3s_version: v1.33.3+k3s1
   tasks:
     - name: Instalar K3s (master)
       shell: |
         curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_SELINUX_WARN=true sh -
-      args:
-        creates: /etc/rancher/k3s/k3s.yaml
       register: k3s_install_result
 
     - name: Mostrar salida de la instalación
@@ -85,40 +83,32 @@
       become_user: ec2-user
 
 - name: Instalar K3s en los workers
-  hosts: k3s_workers
+  hosts: k3s_nodes
   become: true
   vars:
-    k3s_version: v1.28.5+k3s1
-    k3s_master_ip: "{{ hostvars['master']['ansible_host'] }}"
+    k3s_version: v1.33.3+k3s1
+    k3s_master_ip: "{{ hostvars[groups['k3s_master'][0]]['ansible_host'] }}"
   tasks:
     - name: Leer token del master
-      slurp:
-        src: ./node-token.txt
-      delegate_to: localhost
-      become: false
-      run_once: true
-      register: token_file
-
-    - name: Escribir token en cada worker
-      copy:
-        content: "{{ token_file['content'] | b64decode }}"
-        dest: /tmp/node-token.txt
+      set_fact:
+        k3s_token: "{{ lookup('file', 'node-token.txt') | trim }}"
 
     - name: Instalar K3s (worker)
       shell: |
-        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true K3S_URL=https://{{ k3s_master_ip }}:6443 K3S_TOKEN=$(cat /tmp/node-token.txt) sh -
-      args:
-        creates: /etc/rancher/k3s/k3s.yaml
+        curl -sfL https://get.k3s.io | \
+        INSTALL_K3S_VERSION={{ k3s_version }} \
+        INSTALL_K3S_SKIP_SELINUX_RPM=true \
+        K3S_URL=https://{{ k3s_master_ip }}:6443 \
+        K3S_TOKEN={{ k3s_token }} \
+        sh -
       register: k3s_worker_result
 
-    - name: Mostrar salida de la instalación en worker
+    - name: Mostrar salida de instalación
       debug:
         var: k3s_worker_result.stdout_lines
 
-    - name: Agregar binarios al PATH del usuario ec2-user
-      lineinfile:
-        path: /home/ec2-user/.bashrc
-        line: 'export PATH=$PATH:/usr/local/bin'
-        insertafter: EOF
-        create: yes
-      become_user: ec2-user
+    - name: Verificar que el servicio k3s-agent esté activo
+      systemd:
+        name: k3s-agent
+        state: started
+        enabled: true

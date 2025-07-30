@@ -1,0 +1,124 @@
+- name: Limpiar instalaciones anteriores de K3s en todos los nodos
+  hosts: k3s_cluster
+  become: true
+  tasks:
+    - name: Desinstalar K3s si está instalado
+      shell: |
+        [ -f /usr/local/bin/k3s-uninstall.sh ] && /usr/local/bin/k3s-uninstall.sh || true
+        [ -f /usr/local/bin/k3s-agent-uninstall.sh ] && /usr/local/bin/k3s-agent-uninstall.sh || true
+      ignore_errors: yes
+
+    - name: Borrar directorios de K3s
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/rancher
+        - /var/lib/rancher
+        - /usr/local/bin/k3s
+        - /usr/local/bin/kubectl
+        - /usr/local/bin/crictl
+        - /usr/local/bin/ctr
+        - /etc/systemd/system/k3s.service
+        - /etc/systemd/system/k3s-agent.service
+      ignore_errors: yes
+
+- name: Instalar dependencias en todos los nodos
+  hosts: k3s_cluster
+  become: true
+  tasks:
+    - name: Instalar Python
+      raw: yum install -y python3
+      changed_when: false
+
+    - name: Instalar curl usando yum
+      shell: yum install -y curl
+      args:
+        creates: /usr/bin/curl
+
+- name: Instalar K3s en el nodo master
+  hosts: k3s_master
+  become: true
+  vars:
+    k3s_version: v1.28.5+k3s1
+  tasks:
+    - name: Instalar K3s (master)
+      shell: |
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_SELINUX_WARN=true sh -
+      args:
+        creates: /etc/rancher/k3s/k3s.yaml
+      register: k3s_install_result
+
+    - name: Mostrar salida de la instalación
+      debug:
+        var: k3s_install_result.stdout_lines
+
+    - name: Esperar que k3s levante el servicio
+      wait_for:
+        path: /etc/rancher/k3s/k3s.yaml
+        timeout: 120
+
+    - name: Verificar que el servicio esté activo
+      systemd:
+        name: k3s
+        state: started
+        enabled: true
+
+    - name: Obtener token del master
+      slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: token_file
+
+    - name: Guardar token en archivo local
+      copy:
+        content: "{{ token_file['content'] | b64decode }}"
+        dest: ./node-token.txt
+      delegate_to: localhost
+      become: false
+
+    - name: Agregar binarios y kubeconfig al PATH del usuario ec2-user
+      lineinfile:
+        path: /home/ec2-user/.bashrc
+        line: 'export PATH=$PATH:/usr/local/bin && export KUBECONFIG=/etc/rancher/k3s/k3s.yaml'
+        insertafter: EOF
+        create: yes
+      become_user: ec2-user
+
+- name: Instalar K3s en los workers
+  hosts: k3s_workers
+  become: true
+  vars:
+    k3s_version: v1.28.5+k3s1
+    k3s_master_ip: "{{ hostvars['master']['ansible_host'] }}"
+  tasks:
+    - name: Leer token del master
+      slurp:
+        src: ./node-token.txt
+      delegate_to: localhost
+      become: false
+      run_once: true
+      register: token_file
+
+    - name: Escribir token en cada worker
+      copy:
+        content: "{{ token_file['content'] | b64decode }}"
+        dest: /tmp/node-token.txt
+
+    - name: Instalar K3s (worker)
+      shell: |
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true K3S_URL=https://{{ k3s_master_ip }}:6443 K3S_TOKEN=$(cat /tmp/node-token.txt) sh -
+      args:
+        creates: /etc/rancher/k3s/k3s.yaml
+      register: k3s_worker_result
+
+    - name: Mostrar salida de la instalación en worker
+      debug:
+        var: k3s_worker_result.stdout_lines
+
+    - name: Agregar binarios al PATH del usuario ec2-user
+      lineinfile:
+        path: /home/ec2-user/.bashrc
+        line: 'export PATH=$PATH:/usr/local/bin'
+        insertafter: EOF
+        create: yes
+      become_user: ec2-user

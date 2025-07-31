@@ -6,6 +6,7 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 - Docker
 - Terraform + Ansible
 - AWS EC2 Spot + EBS + Route 53
+- Don Web (domain)
 - PostgreSQL (with monitoring)
 - ArgoCD
 - Prometheus + Grafana + Loki
@@ -16,11 +17,11 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 ## 🌍 Apps deployed (In progress...)
 | App               | Subdomain              |
 |-------------------|--------------------------|
-| Homepage          | home.julian-lab.com      |
-| Portfolio Web     | julian-lab.com           |
-| PendingTask       | pendingtask.julian-lab.com   |
-| Grafana           | grafana.julian-lab.com   |
-| ArgoCD            | argocd.julian-lab.com    |
+| Homepage          | home.julianzanetti-lab.com      |
+| Portfolio Web     | julianzanetti-lab.com           |
+| PendingTask       | pendingtask.julianzanetti-lab.com   |
+| Grafana           | grafana.julianzanetti-lab.com   |
+| ArgoCD            | argocd.julianzanetti-lab.com    |
 | Prometheus        |           -              |
 | Loki              |           -              |
 
@@ -47,7 +48,7 @@ Learn and demonstrate professional skills in:
         - ✅ VPC infra
         - ✅ Security Groups
         - ✅ 3 EC2 Spot Instances (1 master, 2 workers) + EBS
-        - ✅ Elastic IP + Route53
+        - ✅ Elastic IP
     - ✅ Test provisioning and connectivity
 
 - ### 🟨 Stage 3 — K3s & Core Services

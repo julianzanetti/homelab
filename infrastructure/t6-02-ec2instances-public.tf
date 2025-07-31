@@ -7,7 +7,7 @@ module "public_ec2_instance" {
   name = "homelab-public-${each.key}"
   create_spot_instance = true
   spot_type = "persistent"
-  spot_wait_for_fulfillment = true
+  #spot_wait_for_fulfillment = true
 
   instance_type = each.value.instance_type
   ami = data.aws_ami.amzlinux2.id

@@ -44,7 +44,7 @@
   tasks:
     - name: Instalar K3s (master)
       shell: |
-        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_SELINUX_WARN=true sh -
+        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_SELINUX_WARN=true INSTALL_K3S_EXEC="--disable=traefik" sh -
       register: k3s_install_result
 
     - name: Mostrar salida de la instalación

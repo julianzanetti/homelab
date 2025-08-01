@@ -74,36 +74,26 @@
       delegate_to: localhost
       become: false
 
-    - name: Agregar binarios y kubeconfig al PATH del usuario ec2-user
-      lineinfile:
-        path: /home/ec2-user/.bashrc
-        line: 'export PATH=$PATH:/usr/local/bin && export KUBECONFIG=/etc/rancher/k3s/k3s.yaml'
-        insertafter: EOF
-        create: yes
-      become_user: ec2-user
+    - name: Configurar entorno global para helm y kubectl para todos los usuarios (incluido root)
+      copy:
+        dest: /etc/profile.d/k3s_env.sh
+        content: |
+          export PATH=$PATH:/usr/local/bin
+          export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+          alias kubectl='k3s kubectl'
+        mode: '0755'
+    
+    - name: Crear symlink para helm en /usr/bin
+      file:
+        src: /usr/local/bin/helm
+        dest: /usr/bin/helm
+        state: link
 
-    - name: Asegurar que /usr/local/bin esté en el PATH del usuario ec2-user
-      lineinfile:
-        path: /home/ec2-user/.bashrc
-        line: 'export PATH=$PATH:/usr/local/bin'
-        insertafter: EOF
-        create: yes
-      become_user: ec2-user
-
-    - name: Crear alias permanente para kubectl usando k3s
-      lineinfile:
-        path: /home/ec2-user/.bashrc
-        line: "alias kubectl='sudo /usr/local/bin/k3s kubectl'"
-        insertafter: EOF
-        create: yes
-      become_user: ec2-user
-
-    - name: Aplicar cambios del .bashrc (opcional)
-      shell: source /home/ec2-user/.bashrc
-      args:
-        executable: /bin/bash
-      become_user: ec2-user
-
+    - name: Crear symlink para kubectl apuntando a k3s en /usr/bin
+      file:
+        src: /usr/local/bin/k3s
+        dest: /usr/bin/kubectl
+        state: link
 
 - name: Instalar K3s en los workers
   hosts: k3s_nodes
@@ -143,9 +133,8 @@
     helm_version: "v3.18.4"
   tasks:
     - name: Instalar Git
-      yum:
-        name: git
-        state: present
+      raw: yum install -y git
+      changed_when: false
 
     - name: Descargar Helm
       get_url:
@@ -158,16 +147,25 @@
         dest: "/tmp/"
         remote_src: yes
 
-    - name: Mover binario de Helm
-      copy:
-        src: "/tmp/linux-arm64/helm"
-        dest: "/usr/local/bin/helm"
+    - name: Mover binario de Helm al PATH
+      command: mv /tmp/linux-arm64/helm /usr/local/bin/helm
+
+    - name: Asignar permisos al binario de Helm
+      file:
+        path: /usr/local/bin/helm
         mode: '0755'
 
     - name: Verificar instalación de Helm
-      command: helm version
-      register: helm_version_result
+      command: /usr/local/bin/helm version
+      register: helm_version_resul
 
     - name: Mostrar versión de Helm
       debug:
         var: helm_version_result.stdout
+
+    - name: Hacer persistente la variable KUBECONFIG para todos los usuarios
+      copy:
+        dest: /etc/profile.d/kubectl_config.sh
+        content: |
+          export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+        mode: '0755'

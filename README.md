@@ -53,7 +53,7 @@ Learn and demonstrate professional skills in:
 
 - ### 🟨 Stage 3 — K3s & Core Services
     - ✅ Install K3s and connect nodes with Ansible
-    - ☐ Deploy NGINX Ingress Controller
+    - ✅ Deploy NGINX Ingress Controller
     - ☐ Set up cert-manager and Let's Encrypt
     - ☐ Route DNS to Elastic IP with Route 53
 

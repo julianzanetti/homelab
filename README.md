@@ -54,9 +54,9 @@ Learn and demonstrate professional skills in:
 
 - ### 🟨 Stage 3 — K3s & Core Services
     - ✅ Install K3s and connect nodes with Ansible
-    - ✅ Deploy NGINX Ingress Controller
+    - ✅ Deploy NGINX Ingress Controller with Helm
     - ✅ Route DNS to Elastic IP with DonWeb
-    - ☐ Set up cert-manager and Let's Encrypt
+    - ☐ Set up cert-manager and Let's Encrypt with Helm
 
 - ### 🟦 Stage 4 — Deploy & GitOps
     - ☐ Deploy all applications to cluster

@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: portfolio-tls
+spec:
+  secretName: portfolio-tls
+  issuerRef:
+    name: letsencrypt-dns
+    kind: ClusterIssuer
+  commonName: julianzanetti-lab.com
+  dnsNames:
+    - julianzanetti-lab.com
+  duration: 8760h # 90d
+  renewBefore: 360h # 15d

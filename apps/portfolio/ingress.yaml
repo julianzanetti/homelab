@@ -5,8 +5,14 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-dns
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - julianzanetti-lab.com
+      secretName: portfolio-tls
   rules:
     - host: julianzanetti-lab.com
       http:

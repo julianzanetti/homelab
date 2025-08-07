@@ -7,7 +7,7 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 - Terraform + Ansible
 - AWS EC2 Spot + EBS + Route 53
 - Don Web (domain)
-- Helm (to deploy NGINX Ingress)
+- Helm (to deploy NGINX Ingress and Cert-Manager)
 - PostgreSQL (with monitoring)
 - ArgoCD
 - Prometheus + Grafana + Loki

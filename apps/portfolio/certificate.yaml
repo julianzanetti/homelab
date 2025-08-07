@@ -10,5 +10,5 @@ spec:
   commonName: julianzanetti-lab.com
   dnsNames:
     - julianzanetti-lab.com
-  duration: 8760h # 90d
+  duration: 2160h # 90d
   renewBefore: 360h # 15d

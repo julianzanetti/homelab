@@ -52,11 +52,16 @@ Learn and demonstrate professional skills in:
         - ✅ Elastic IP
     - ✅ Test provisioning and connectivity
 
-- ### 🟨 Stage 3 — K3s & Core Services
+- ### 🟩 Stage 3 — K3s & Core Services
     - ✅ Install K3s and connect nodes with Ansible
     - ✅ Deploy NGINX Ingress Controller with Helm
-    - ✅ Route DNS to Elastic IP with DonWeb
-    - ☐ Set up cert-manager and Let's Encrypt with Helm
+    - ❌ Route DNS to Elastic IP with DonWeb *(Deprecated – migrated to Route 53)*
+    - ✅ Configure Route53 hosted zone for julianzanetti-lab.com
+    - ✅ Create IAM user and policy for cert-manager DNS access
+    - ✅ Deploy cert-manager with Helm
+    - ✅ Set up ClusterIssuer with DNS-01 using Route53
+    - ✅ Issue Let's Encrypt certificates automatically for each app
+    - ✅ Force HTTPS with valid TLS certificates in all apps
 
 - ### 🟦 Stage 4 — Deploy & GitOps
     - ☐ Deploy all applications to cluster

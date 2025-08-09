@@ -19,10 +19,10 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 | App               | Subdomain              |
 |-------------------|--------------------------|
 | Homepage          | [home.julianzanetti-lab.com](home.julianzanetti-lab.com)      |
-| Portfolio Web     | julianzanetti-lab.com           |
-| PendingTask       | pendingtask.julianzanetti-lab.com   |
-| Grafana           | grafana.julianzanetti-lab.com   |
-| ArgoCD            | argocd.julianzanetti-lab.com    |
+| Portfolio Web     | [julianzanetti-lab.com](julianzanetti-lab.com)           |
+| PendingTask       | [pendingtask.julianzanetti-lab.com](pendingtask.julianzanetti-lab.com)   |
+| Grafana           | [grafana.julianzanetti-lab.com](grafana.julianzanetti-lab.com)   |
+| ArgoCD            | [argocd.julianzanetti-lab.com](argocd.julianzanetti-lab.com)    |
 | Prometheus        |           -              |
 | Loki              |           -              |
 

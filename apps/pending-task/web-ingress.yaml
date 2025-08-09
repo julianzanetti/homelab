@@ -5,8 +5,14 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-dns
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - pendingtask.julianzanetti-lab.com
+      secretName: pendingtask-tls
   rules:
     - host: pendingtask.julianzanetti-lab.com
       http:

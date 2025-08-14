@@ -66,11 +66,10 @@ Learn and demonstrate professional skills in:
     - ✅ Force HTTPS with valid TLS certificates in all apps
 
 - ### 🟦 Stage 4 — Deploy & GitOps
-    - ☐ Deploy all applications to cluster
+    - 🟧 Deploy all applications to cluster
     - ☐ Deploy PostgreSQL Exporter
     - ☐ Install Prometheus, Grafana and Loki
-    - ☐ Install ArgoCD and link Git repo
-    - ☐ Secure apps with HTTPS
+    - ✅ Install ArgoCD and link Git repo
 
 - ### 🟪 Stage 5 — Final touches
     - ☐ Create Grafana dashboards

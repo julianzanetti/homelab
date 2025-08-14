@@ -1,5 +1,7 @@
 # 🧱 Homelab DevOps in AWS
-This project is a personal lab environment on AWS with real DevOps practices. The goal is to simulate a productive 24/7 infrastructure with multiple applications, observability, GitOps, security and automation.
+This repo contains all of the configuration and documentation of my homelab in AWS, the project is a personal lab environment on AWS with real DevOps practices. 
+
+The goal is to simulate a productive 24/7 infrastructure with multiple applications, observability, GitOps, security and automation. This homelab is the place where I can try out and learn new things. By self-hosting some aplications, it makes me feel responsible for the entire process of deploying and mantaining. It forces me think about backup strategies, security, scalability, etc.
 
 ## 🚀 Technologies used
 - Kubernetes (K3s)
@@ -18,11 +20,11 @@ This project is a personal lab environment on AWS with real DevOps practices. Th
 ## 🌍 Apps deployed (In progress...)
 | App               | Subdomain              |
 |-------------------|--------------------------|
-| Homepage          | home.julianzanetti-lab.com      |
-| Portfolio Web     | julianzanetti-lab.com           |
-| PendingTask       | pendingtask.julianzanetti-lab.com   |
-| Grafana           | grafana.julianzanetti-lab.com   |
-| ArgoCD            | argocd.julianzanetti-lab.com    |
+| Homepage          | [home.julianzanetti-lab.com](https://home.julianzanetti-lab.com)      |
+| Portfolio Web     | [julianzanetti-lab.com](https://julianzanetti-lab.com)           |
+| PendingTask       | [pendingtask.julianzanetti-lab.com](https://pendingtask.julianzanetti-lab.com)   |
+| Grafana           | [grafana.julianzanetti-lab.com](https://grafana.julianzanetti-lab.com)   |
+| ArgoCD            | [argocd.julianzanetti-lab.com](https://argocd.julianzanetti-lab.com)    |
 | Prometheus        |           -              |
 | Loki              |           -              |
 

@@ -1,28 +1,3 @@
-- name: Limpiar instalaciones anteriores de K3s en todos los nodos
-  hosts: k3s_cluster
-  become: true
-  tasks:
-    - name: Desinstalar K3s si está instalado
-      shell: |
-        [ -f /usr/local/bin/k3s-uninstall.sh ] && /usr/local/bin/k3s-uninstall.sh || true
-        [ -f /usr/local/bin/k3s-agent-uninstall.sh ] && /usr/local/bin/k3s-agent-uninstall.sh || true
-      ignore_errors: yes
-
-    - name: Borrar directorios de K3s
-      file:
-        path: "{{ item }}"
-        state: absent
-      loop:
-        - /etc/rancher
-        - /var/lib/rancher
-        - /usr/local/bin/k3s
-        - /usr/local/bin/kubectl
-        - /usr/local/bin/crictl
-        - /usr/local/bin/ctr
-        - /etc/systemd/system/k3s.service
-        - /etc/systemd/system/k3s-agent.service
-      ignore_errors: yes
-
 - name: Instalar dependencias en todos los nodos
   hosts: k3s_cluster
   become: true

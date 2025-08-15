@@ -24,8 +24,17 @@ spec:
         - name: DB_PORT
           value: "5432"
         - name: DB_NAME
-          value: pendingtask_db
+          valueFrom:
+            secretKeyRef:
+              name: pendingtask-secret
+              key: POSTGRES_DB
         - name: DB_USER
-          value: julian
+          valueFrom:
+            secretKeyRef:
+              name: pendingtask-secret
+              key: POSTGRES_USER
         - name: DB_PASSWORD
-          value: carc1889
+          valueFrom:
+            secretKeyRef:
+              name: pendingtask-secret
+              key: POSTGRES_PASSWORD

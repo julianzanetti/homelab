@@ -27,3 +27,6 @@ private-key/
 
 # Archivos de configuración de Ansible
 node-token.txt
+
+# Secretos y credenciales
+secret.yaml

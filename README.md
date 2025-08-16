@@ -68,11 +68,12 @@ Learn and demonstrate professional skills in:
 - ### 🟦 Stage 4 — Deploy & GitOps
     - 🟧 Deploy all applications to cluster
     - ☐ Deploy PostgreSQL Exporter
-    - ☐ Install Prometheus, Grafana and Loki
+    - ✅ Install Prometheus, Grafana and Loki
     - ✅ Install ArgoCD and link Git repo
 
 - ### 🟪 Stage 5 — Final touches
-    - ☐ Create Grafana dashboards
+    - 🟧 Create Grafana dashboards
     - ☐ Automate deployments with GitHub Actions
     - ☐ Add screenshots to README
     - ☐ Backup and snapshot strategy (optional)
+    - ☐ Script to keep the 3 spot instances up

@@ -54,5 +54,8 @@ grafana:
   sidecar:
     datasources:
       enabled: true
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
   image:
     tag: 12.1.0

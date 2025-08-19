@@ -9,7 +9,7 @@ The goal is to simulate a productive 24/7 infrastructure with multiple applicati
 - Terraform + Ansible
 - AWS EC2 Spot + EBS + Route 53
 - Don Web (domain)
-- Helm (to deploy NGINX Ingress and Cert-Manager)
+- Helm
 - PostgreSQL (with monitoring)
 - ArgoCD
 - Prometheus + Grafana + Loki
@@ -77,3 +77,4 @@ Learn and demonstrate professional skills in:
     - ☐ Add screenshots to README
     - ☐ Backup and snapshot strategy (optional)
     - ☐ Script to keep the 3 spot instances up
+    - 🟧 Self-healing script/infra for Spot Instances → Auto Scaling Group + UserData + Lambda drain

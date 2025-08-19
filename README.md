@@ -40,6 +40,20 @@ Learn and demonstrate professional skills in:
 - GitOps + CI/CD
 - Infrastructure as code
 
+## 📸 Screenshots
+- Portfolio:
+<img width="2559" height="1312" alt="image" src="https://github.com/user-attachments/assets/c353ed7a-a27c-4ab7-aba4-643cbfa15fcc" />
+
+- Pendingtask:
+<img width="2559" height="765" alt="image" src="https://github.com/user-attachments/assets/55ec793f-6509-4133-b51a-9a660047a186" />
+
+- ArgoCD:
+<img width="2559" height="1277" alt="image" src="https://github.com/user-attachments/assets/aebe40ec-04ed-4bbb-a782-f6b22572db9a" />
+
+- Grafana:
+<img width="2559" height="1257" alt="image" src="https://github.com/user-attachments/assets/5cfc20f1-0a69-49a8-8a6c-e0030072d15c" />
+
+
 ## ✅ Roadmap by stages
 - ### 🟩 Stage 1 - Apps
     - ✅ PendingTask and Portfolio with Docker.
@@ -74,7 +88,7 @@ Learn and demonstrate professional skills in:
 - ### 🟪 Stage 5 — Final touches
     - 🟧 Create Grafana dashboards
     - ☐ Automate deployments with GitHub Actions
-    - ☐ Add screenshots to README
+    - ✅ Add screenshots to README
     - ☐ Backup and snapshot strategy (optional)
     - ☐ Script to keep the 3 spot instances up
     - 🟧 Self-healing script/infra for Spot Instances → Auto Scaling Group + UserData + Lambda drain

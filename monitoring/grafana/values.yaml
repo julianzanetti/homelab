@@ -3,7 +3,7 @@ loki:
   persistence:
     enabled: true
     size: 5Gi
-    storageClass: gp3
+    storageClass: "local-path"
   resources:
     requests:
       cpu: 50m
@@ -43,7 +43,7 @@ grafana:
   persistence:
     enabled: true
     size: 5Gi
-    storageClass: gp3
+    storageClass: "local-path"
   resources:
     requests:
       cpu: 100m

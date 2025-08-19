@@ -15,7 +15,7 @@ server:
   persistentVolume:
     enabled: true
     size: 5Gi
-    storageClass: gp3  # EBS de AWS
+    storageClass: "local-path"
   retention: 7d  # métricas de 7 días
 
 serverFiles:

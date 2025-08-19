@@ -45,13 +45,13 @@ Learn and demonstrate professional skills in:
 <img width="2559" height="1312" alt="image" src="https://github.com/user-attachments/assets/c353ed7a-a27c-4ab7-aba4-643cbfa15fcc" />
 
 - Pendingtask:
-<img width="2559" height="765" alt="image" src="https://github.com/user-attachments/assets/55ec793f-6509-4133-b51a-9a660047a186" />
+<img width="2559" height="861" alt="image" src="https://github.com/user-attachments/assets/4c8b3be2-2922-4cff-9856-e6bad736626d" />
 
 - ArgoCD:
-<img width="2559" height="1277" alt="image" src="https://github.com/user-attachments/assets/aebe40ec-04ed-4bbb-a782-f6b22572db9a" />
+<img width="2559" height="1281" alt="image" src="https://github.com/user-attachments/assets/2427edef-f81d-4c5c-aca7-019ea1b4fa8f" />
 
 - Grafana:
-<img width="2559" height="1257" alt="image" src="https://github.com/user-attachments/assets/5cfc20f1-0a69-49a8-8a6c-e0030072d15c" />
+<img width="2559" height="1350" alt="image" src="https://github.com/user-attachments/assets/a06366c9-2d56-400a-9c37-42b174a6d34a" />
 
 
 ## ✅ Roadmap by stages

@@ -7,7 +7,10 @@ The goal is to simulate a productive 24/7 infrastructure with multiple applicati
 - Kubernetes (K3s)
 - Docker
 - Terraform + Ansible
-- AWS EC2 Spot + EBS + Route 53
+- AWS:
+  - EC2 Spot + EBS
+  - Route 53
+  - IAM
 - Don Web (domain)
 - Helm
 - PostgreSQL (with monitoring)

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-settings
+  namespace: homepage
+data:
+  settings.yaml: |
+    title: "Mi Homepage"
+    theme: dark
+    language: es
+    headerStyle: clean
+    layout:
+      - services
+      - bookmarks
+      - widgets

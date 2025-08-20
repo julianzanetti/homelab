@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-bookmarks
+  namespace: homepage
+data:
+  bookmarks.yaml: |
+    - Dev Tools:
+        - GitHub: { href: "https://github.com/julianzanetti", icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png" }
+        - Docker Hub: { href: "https://hub.docker.com", icon: "https://cdn-icons-png.flaticon.com/512/919/919853.png" }
+    - Cloud:
+        - AWS Console: { href: "https://console.aws.amazon.com", icon: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" }

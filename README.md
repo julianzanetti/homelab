@@ -44,6 +44,9 @@ Learn and demonstrate professional skills in:
 - Instances:
 <img width="2315" height="295" alt="image" src="https://github.com/user-attachments/assets/e035effd-f7de-4a54-b1f3-c914d1846c13" />
 
+- Homepage:
+<img width="1365" height="712" alt="image" src="https://github.com/user-attachments/assets/c4a032e3-346a-4f91-b256-07f0e6cf3e93" />
+
 - Portfolio:
 <img width="2559" height="1312" alt="image" src="https://github.com/user-attachments/assets/c353ed7a-a27c-4ab7-aba4-643cbfa15fcc" />
 

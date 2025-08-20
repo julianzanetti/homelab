@@ -7,24 +7,48 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: homepage
+      app.kubernetes.io/name: homepage
   template:
     metadata:
       labels:
-        app: homepage
+        app.kubernetes.io/name: homepage
     spec:
+      serviceAccountName: homepage
       containers:
-      - name: homepage
-        image: gethomepage/homepage:latest
-        ports:
-        - containerPort: 3000
-        env:
-        - name: HOMEPAGE_CONFIG
-          value: "/config/homepage.json"
-        volumeMounts:
-        - name: config
-          mountPath: /config
+        - name: homepage
+          image: ghcr.io/gethomepage/homepage:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              value: "home.julianzanetti-lab.com"
+          volumeMounts:
+            - name: settings
+              mountPath: /app/config/settings.yaml
+              subPath: settings.yaml
+            - name: services
+              mountPath: /app/config/services.yaml
+              subPath: services.yaml
+            - name: bookmarks
+              mountPath: /app/config/bookmarks.yaml
+              subPath: bookmarks.yaml
+            - name: widgets
+              mountPath: /app/config/widgets.yaml
+              subPath: widgets.yaml
+            - name: logs
+              mountPath: /app/config/logs
       volumes:
-      - name: config
-        configMap:
-          name: homepage-config
+        - name: settings
+          configMap:
+            name: homepage-settings
+        - name: services
+          configMap:
+            name: homepage-services
+        - name: bookmarks
+          configMap:
+            name: homepage-bookmarks
+        - name: widgets
+          configMap:
+            name: homepage-widgets
+        - name: logs
+          emptyDir: {}

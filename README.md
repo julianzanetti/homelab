@@ -57,7 +57,7 @@ Learn and demonstrate professional skills in:
 <img width="2559" height="861" alt="image" src="https://github.com/user-attachments/assets/4c8b3be2-2922-4cff-9856-e6bad736626d" />
 
 - ArgoCD:
-<img width="2559" height="1281" alt="image" src="https://github.com/user-attachments/assets/2427edef-f81d-4c5c-aca7-019ea1b4fa8f" />
+<img width="2559" height="1280" alt="image" src="https://github.com/user-attachments/assets/95d2df08-7455-4fad-a30e-fa3b5f0192ff" />
 
 - Grafana:
 <img width="2559" height="1350" alt="image" src="https://github.com/user-attachments/assets/a06366c9-2d56-400a-9c37-42b174a6d34a" />

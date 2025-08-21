@@ -12,5 +12,5 @@ data:
     - Applications:
         - Portfolio Web: { href: "https://julianzanetti-lab.com", icon: "https://cdn-icons-png.flaticon.com/512/841/841364.png" }
         - PendingTask: { href: "https://pendingtask.julianzanetti-lab.com", icon: "https://cdn-icons-png.flaticon.com/512/2965/2965567.png" }
-        - Grafana: { href: "https://grafana.julianzanetti-lab.com", icon: "https://cdn-icons-png.flaticon.com/512/919/919836.png" }
-        - ArgoCD: { href: "https://argocd.julianzanetti-lab.com", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968672.png" }
+        - Grafana: { href: "https://grafana.julianzanetti-lab.com", icon: "https://icon.icepanel.io/Technology/svg/Grafana.svg" }
+        - ArgoCD: { href: "https://argocd.julianzanetti-lab.com", icon: "https://icon.icepanel.io/Technology/svg/Argo-CD.svg" }

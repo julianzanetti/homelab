@@ -95,9 +95,8 @@ Learn and demonstrate professional skills in:
     - ✅ Install ArgoCD and link Git repo
 
 - ### 🟪 Stage 5 — Final touches
-    - 🟧 Create Grafana dashboards
+    - ✅ Create Grafana dashboards
     - ☐ Automate deployments with GitHub Actions
     - ✅ Add screenshots to README
     - ☐ Backup and snapshot strategy (optional)
     - ☐ Script to keep the 3 spot instances up
-    - 🟧 Self-healing script/infra for Spot Instances → Auto Scaling Group + UserData + Lambda drain

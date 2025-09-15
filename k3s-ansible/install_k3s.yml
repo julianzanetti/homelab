@@ -93,7 +93,7 @@
   hosts: k3s_master
   become: true
   vars:
-    helm_version: "v3.18.4"
+    helm_version: "v3.19.0"
   tasks:
     - name: Instalar Git
       raw: yum install -y git

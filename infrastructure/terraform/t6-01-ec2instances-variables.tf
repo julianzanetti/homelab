@@ -9,5 +9,5 @@ locals {
 variable "instance_key" {
   description = "EC2 Instance keypair"
   type = string
-  default = "terraform-key"
+  default = "terraform-us"
 }

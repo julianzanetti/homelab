@@ -100,3 +100,4 @@ Learn and demonstrate professional skills in:
     - ✅ Add screenshots to README
     - ☐ Backup and snapshot strategy (optional)
     - ☐ Script to keep the 3 spot instances up
+    - 🟧 Migrate Infraestructure to ASG (1 on-demand + 2 spot)

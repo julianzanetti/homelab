@@ -4,25 +4,14 @@ variable "instance_key" {
   default = "terraform-us"
 }
 
-variable "instances" {
-  description = "Configuration for EC2 instances (Type and Spot)"
-  type = map(object({
-    instance_type = string
-    is_spot       = bool
-  }))
+variable "type_instance" {
+  description = "Type of instance"
+  type = string
+  default = "t4g.small"
+}
 
-  default = {
-    "1" = {
-      instance_type = "t4g.small"
-      is_spot       = false
-    }
-    "2" = {
-      instance_type = "t4g.small"
-      is_spot       = true
-    }
-    "3" = {
-      instance_type = "t4g.small"
-      is_spot       = true
-    }  
-  }
+variable "worker_user_data_file" {
+  description = "Path to user data file for worker nodes"
+  type = string
+  default = "scripts/k3s-workers.sh"  
 }

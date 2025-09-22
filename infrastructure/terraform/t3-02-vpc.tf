@@ -16,14 +16,14 @@ module "vpc" {
   ## Tags for Public Subnets
   public_subnet_tags = {
     Name        = "${var.vpc_name}-public"
-    Environment = "Homelab"
+    Environment = "Homelab-Testing"
     Owner      = "Julian Zanetti"
   }
 
   ## Tags for Private Subnets
   private_subnet_tags = {
     Name        = "${var.vpc_name}-private"
-    Environment = "Homelab"
+    Environment = "Homelab-Testing"
     Owner      = "Julian Zanetti"
   }
 

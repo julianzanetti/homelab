@@ -1,4 +1,4 @@
-# --- Master On-demand Instance ---
+# --- Module for Master On-demand Instance ---
 module "public_ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "6.1.1"
@@ -71,5 +71,16 @@ module "k3s_workers_asg" {
     security_groups = [module.homelab_sg_public.security_group_id]
     device_index = 0
   }
+
+  # IAM role for SSM
+  create_iam_instance_profile = true
+  iam_role_name = "k3s-workers-role"
+  iam_role_path = "/ec2/"
+  iam_role_description = "Instance role for ASG workers to access SSM and other ops"
+  iam_role_policies = {
+    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  }
+
+  tags = merge(local.common_tags, {Role = "k3s-worker"})
 
 }

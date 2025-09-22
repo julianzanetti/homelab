@@ -1,7 +1,7 @@
 variable "vpc_name" {
   description = "The name of the VPC"
   type        = string
-  default     = "VPC-Homelab"
+  default     = "VPC-Homelab-Testing-ASG"
 }
 
 variable "vpc_cidr" {

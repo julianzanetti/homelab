@@ -6,7 +6,7 @@ variable "aws_region" {
 
 locals {
     common_tags = {
-        Environment = "Homelab"
+        Environment = "Homelab-Testing"
         Owner       = "Julian Zanetti"
         ManagedBy   = "Terraform"
     }

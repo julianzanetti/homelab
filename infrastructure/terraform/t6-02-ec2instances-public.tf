@@ -56,6 +56,10 @@ module "k3s_workers_asg" {
   instance_type = var.type_instance
   key_name = var.instance_key
   user_data = filebase64(var.worker_user_data_file)
+
+  instance_market_options = {
+    market_type = "spot"
+  }
   
   block_device_mappings = {
     device_name = "/dev/xvda"

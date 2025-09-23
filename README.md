@@ -1,103 +1,39 @@
-# 🧱 Homelab DevOps in AWS
+# 🔄 Migration: EC2 Instances → Auto Scaling Group (ASG)
 This repo contains all of the configuration and documentation of my homelab in AWS, the project is a personal lab environment on AWS with real DevOps practices. 
 
-The goal is to simulate a productive 24/7 infrastructure with multiple applications, observability, GitOps, security and automation. This homelab is the place where I can try out and learn new things. By self-hosting some aplications, it makes me feel responsible for the entire process of deploying and mantaining. It forces me think about backup strategies, security, scalability, etc.
+## 🎯 Objective
+Migrate the current manually managed EC2 nodes (1 On-Demand + 1 Spot) to an **Auto Scaling Group** that guarantees:
+- Always 3 nodes available (1 On-Demand + 2 Spot).
+- Automatic replacement of Spot nodes when interrupted.
+- Zero downtime during migration.
 
-## 🚀 Technologies used
-- Kubernetes (K3s)
-- Docker
-- Terraform + Ansible
-- AWS:
-  - EC2 Spot + EBS
-  - Route 53
-  - IAM
-- Don Web (domain)
-- Helm
-- PostgreSQL (with monitoring)
-- ArgoCD
-- Prometheus + Grafana + Loki
-- Let's Encrypt (cert-manager)
-- GitHub Actions (CI/CD)
-- Homepage (central dashboard)
+### 📋 Migration Plan
+1. **Preparation**
+   - Create snapshots/AMI of current instances.
+   - Store K3s token securely in AWS SSM Parameter Store.
+   - Update Terraform code with a new `autoscaling` module (mixed instances policy).
 
-## 🌍 Apps deployed (In progress...)
-| App               | Subdomain              |
-|-------------------|--------------------------|
-| Homepage          | [home.julianzanetti-lab.com](https://home.julianzanetti-lab.com)      |
-| Portfolio Web     | [julianzanetti-lab.com](https://julianzanetti-lab.com)           |
-| PendingTask       | [pendingtask.julianzanetti-lab.com](https://pendingtask.julianzanetti-lab.com)   |
-| Grafana           | [grafana.julianzanetti-lab.com](https://grafana.julianzanetti-lab.com)   |
-| ArgoCD            | [argocd.julianzanetti-lab.com](https://argocd.julianzanetti-lab.com)    |
-| Prometheus        |           -              |
-| Loki              |           -              |
+2. **Implementation**
+   - Create a new feature branch: `feature/asg-mixed`.
+   - Add ASG Terraform code (Launch Template + ASG).
+   - Test deployment in a dedicated Terraform workspace (`asg-test`).
 
-## 🧩 Infrastructure
-3 EC2 Spot instances (`t4g.small` x3) with EBS volumes (`10GB each one`) and custom domain. K3s is installed on them and orchestrates all services, exposed with HTTPS thanks to NGINX Ingress + cert-manager.
+3. **Validation**
+   - Verify that new nodes join the K3s cluster and appear as `Ready`.
+   - Ensure pods are scheduled correctly on new nodes.
+   - Simulate Spot termination and check replacement behavior.
 
-## 🧠 Objective
-Learn and demonstrate professional skills in:
+4. **Production rollout**
+   - Deploy ASG in production without destroying old nodes.
+   - Once new nodes are stable, drain and delete old nodes (`kubectl drain && kubectl delete node`).
+   - Remove legacy `aws_instance` resources from Terraform state.
 
-- True cloud deployment
-- Centralised monitoring and logging
-- Cloud security
-- GitOps + CI/CD
-- Infrastructure as code
+5. **Post-migration**
+   - Confirm cluster has 3 healthy nodes (1 On-Demand + 2 Spot).
+   - Update Grafana dashboards and alerts to monitor ASG node health.
+   - Document new runbooks (what to do in case of Spot interruption).
 
-## 📸 Screenshots
-- Instances:
-<img width="2315" height="295" alt="image" src="https://github.com/user-attachments/assets/e035effd-f7de-4a54-b1f3-c914d1846c13" />
-
-- Homepage:
-<img width="1365" height="712" alt="image" src="https://github.com/user-attachments/assets/c4a032e3-346a-4f91-b256-07f0e6cf3e93" />
-
-- Portfolio:
-<img width="2559" height="1312" alt="image" src="https://github.com/user-attachments/assets/c353ed7a-a27c-4ab7-aba4-643cbfa15fcc" />
-
-- Pendingtask:
-<img width="2559" height="861" alt="image" src="https://github.com/user-attachments/assets/4c8b3be2-2922-4cff-9856-e6bad736626d" />
-
-- ArgoCD:
-<img width="2559" height="1280" alt="image" src="https://github.com/user-attachments/assets/95d2df08-7455-4fad-a30e-fa3b5f0192ff" />
-
-- Grafana:
-<img width="2559" height="1350" alt="image" src="https://github.com/user-attachments/assets/a06366c9-2d56-400a-9c37-42b174a6d34a" />
-
-
-## ✅ Roadmap by stages
-- ### 🟩 Stage 1 - Apps
-    - ✅ PendingTask and Portfolio with Docker.
-    - ✅ Try in Minikube.
-    - ✅ Create all necessary YAML manifests.
-
-- ### 🟩 Stage 2 — AWS Infrastructure
-    - ✅ Configure Terraform to deploy:
-        - ✅ VPC infra
-        - ✅ Security Groups
-        - ✅ 3 EC2 Spot Instances (1 master, 2 workers) + EBS
-        - ✅ Elastic IP
-    - ✅ Test provisioning and connectivity
-
-- ### 🟩 Stage 3 — K3s & Core Services
-    - ✅ Install K3s and connect nodes with Ansible
-    - ✅ Deploy NGINX Ingress Controller with Helm
-    - ❌ Route DNS to Elastic IP with DonWeb *(Deprecated – migrated to Route 53)*
-    - ✅ Configure Route53 hosted zone for julianzanetti-lab.com
-    - ✅ Create IAM user and policy for cert-manager DNS access
-    - ✅ Deploy cert-manager with Helm
-    - ✅ Set up ClusterIssuer with DNS-01 using Route53
-    - ✅ Issue Let's Encrypt certificates automatically for each app
-    - ✅ Force HTTPS with valid TLS certificates in all apps
-
-- ### 🟦 Stage 4 — Deploy & GitOps
-    - 🟧 Deploy all applications to cluster
-    - ☐ Deploy PostgreSQL Exporter
-    - ✅ Install Prometheus, Grafana and Loki
-    - ✅ Install ArgoCD and link Git repo
-
-- ### 🟪 Stage 5 — Final touches
-    - ✅ Create Grafana dashboards
-    - ☐ Automate deployments with GitHub Actions
-    - ✅ Add screenshots to README
-    - ☐ Backup and snapshot strategy (optional)
-    - ☐ Script to keep the 3 spot instances up
-    - 🟧 Migrate Infraestructure to ASG (1 on-demand + 2 spot)
+### ✅ Success Criteria
+- 3 nodes are always available.
+- At least 1 On-Demand instance is guaranteed.
+- No downtime for deployed apps during migration

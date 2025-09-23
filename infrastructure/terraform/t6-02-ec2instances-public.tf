@@ -27,7 +27,7 @@ resource "aws_ssm_parameter" "k3s_token" {
   name        = "/k3s/token"
   description = "K3s token for joining nodes to the cluster"
   type        = "String"
-  value       = ""
+  value       = "placeholder-token-change-me"
   overwrite   = true
   tags        = local.common_tags
 }

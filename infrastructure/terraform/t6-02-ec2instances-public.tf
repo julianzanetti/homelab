@@ -61,20 +61,24 @@ module "k3s_workers_asg" {
     market_type = "spot"
   }
   
-  block_device_mappings = {
-    device_name = "/dev/xvda"
-    ebs = {
-      volume_size = 10
-      volume_type = "gp3"
-      delete_on_termination = true
+  block_device_mappings = [
+    {
+      device_name = "/dev/xvda"
+      ebs = {
+        volume_size = 10
+        volume_type = "gp3"
+        delete_on_termination = true
+      }
     }
-  }
+  ]
 
-  network_interfaces = {
-    associate_public_ip_address = true
-    security_groups = [module.homelab_sg_public.security_group_id]
-    device_index = 0
-  }
+  network_interfaces = [
+    {
+      associate_public_ip_address = true
+      security_groups = [module.homelab_sg_public.security_group_id]
+      device_index = 0
+    }
+  ]
 
   # IAM role for SSM
   create_iam_instance_profile = true

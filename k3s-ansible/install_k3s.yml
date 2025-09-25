@@ -58,6 +58,17 @@
           alias kubectl='k3s kubectl'
         mode: '0755'
 
+    - name: Guardar K3s token en SSM Parameter Store
+      aws_ssm_parameter_store:
+        name: /k3s/token
+        description: "K3s cluster token"
+        value: "{{ token_file['content'] | b64decode }}"
+        type: SecureString
+        overwrite_value: always
+        region: us-east-1
+      delegate_to: localhost
+      become: false
+
 - name: Instalar K3s en los workers
   hosts: k3s_nodes
   become: true

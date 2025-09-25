@@ -6,3 +6,13 @@ resource "aws_eip" "public_elastic_ip" {
     Name = "homelab-public-elastic-ip"
   })
 }
+
+# --- SSM Parameter for Master IP ---
+resource "aws_ssm_parameter" "k3s_master_ip" {
+  name        = "/k3s/master_ip"
+  description = "IP for Master Instace to joining nodes to the cluster"
+  type        = "String"
+  value       = "${aws_eip.public_elastic_ip.public_ip}"
+  overwrite   = true
+  tags        = local.common_tags
+}
